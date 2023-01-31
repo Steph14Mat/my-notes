@@ -1,0 +1,424 @@
+.wrapper{
+    width: 800px;
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+article{
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 350px;
+}
+
+::selection{
+    background-color: #e4a28d;
+    color: aliceblue;
+  }
+
+
+// PAS POUR LE TEMPLATE, EFFACER
+
+// ALL WINDOW
+
+.all-window{
+    @include all-window;
+    overflow-x: hidden;
+    position: relative;
+    &::before{
+        @include overlay;
+        background: radial-gradient(circle, rgba(63, 94, 251, 0.411) 0%, rgba(252, 70, 106, 0.527) 100%);
+        min-height: 100%;
+    }
+    video{
+        min-width: 100%;
+        min-height: 100%;
+        }
+    h1{
+        z-index: 3;
+        @include absolute-center;
+    }
+}
+
+// TURTLES OVERLAY
+
+.wrapper-turtle{
+    .container-turtle{
+        position: relative;
+        &:hover .overlay{
+            opacity: 1;
+        }
+        &:hover .overlay-left{
+            width: 100%;
+        }
+        &:hover .overlay-right{
+            width: 100%;
+        }
+        &:hover .overlay-top{
+            height: 100%;
+        }
+        &:hover .overlay-down{
+            height: 100%;
+        }
+        &:hover .overlay-fade{
+            height: 100%;
+        }
+        &:hover .overlay-cross{
+            height: 100%;
+            width: 100%;
+        }
+    }
+    img{
+        width: 100%;
+        }
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.overlay{
+    position: absolute;
+    opacity: 0;
+    background-color: #ffa723cc;
+    @include transition;
+    .text{
+        @include absolute-center;
+    }
+}
+
+.overlay-left{
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+}
+
+.overlay-right{
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 0;
+}
+
+.overlay-top{
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+}
+
+.overlay-down{
+    bottom: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+}
+
+.overlay-fade{
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.overlay-cross{
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 0;
+};
+
+// PORTRAITS
+
+.wrapper-portrait{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    img{
+        width: 100%;
+        @include transition;
+        }
+    .portrait1{
+        position: relative;
+        overflow: hidden;
+        &::after {
+            @include overlay;
+            background-color: rgba(255, 255, 255, 0.507);
+            opacity: 0;
+            @include transition;
+        }
+    }
+}
+
+.portrait1:hover::after {
+    opacity: 0.5;
+}
+
+.portrait1:hover img {
+    transform: scale(1.2);
+}
+
+.portrait2{
+    position: relative;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 0;
+        height: 0;
+        border: 1px solid white;
+        background-color: rgba(0, 0, 0, 0.527);
+        @include transition;
+        z-index: -1;
+    }
+    .text-inside-portrait{
+        @include absolute-center;
+        color: white;
+        z-index: -1;
+        @include transition;
+        font-size: 0px;
+    }
+}
+
+.portrait2:hover::before {
+    width: 80%;
+    height: 80%;
+    z-index: 1;
+}
+
+.portrait2:hover .text-inside-portrait {
+    z-index: 1;
+    font-size: 16px;
+}
+
+.portrait3{
+    position: relative;
+}
+
+.text-amy{
+    @include transition;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    color: white;
+    span{
+        color: rgb(41, 41, 41);
+    }
+}
+
+.portrait3:hover .text-amy {
+	top: 25%;
+	font-size: 14px;
+}
+
+.portrait3::before, .portrait3::after {
+    content: '';
+    width: 90%;
+    height: 1px;
+    background: rgba(255,255,255,0.5);
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    @include transition;
+}
+
+.portrait3:hover::before {
+	transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+.portrait3:hover::after {
+	transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.portrait4{
+    position: relative;
+    background-color: black;
+}
+
+.text-john {
+    @include transition;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+    color: white;
+    span{
+        color: rgb(41, 41, 41);
+    }
+}
+
+.portrait4:hover .text-john {
+	top: 30%;
+}
+
+.text-portrait4 {
+    @include transition;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+    font-size: 0px;
+    color: white;
+}
+
+.portrait4:hover .text-portrait4 {
+	font-size: 15px;
+}
+
+.portrait4:hover img {
+    transform: scale(0.8);
+} 
+
+// EFFETS DE SURVOL COMPLEXES
+
+.wrapper-complex-overlay{
+    display: grid;
+    grid-template-columns: 1f;
+    gap: 1rem;
+}
+
+.complex {
+    overflow: hidden;
+    position: relative;
+}
+
+.overlay-1 {
+    position: relative;
+    img {
+    @include transition;
+    transform:translateX(-80px);
+    height: 100%;
+    }
+}
+
+.overlay-1::after {
+    background: linear-gradient(0deg, rgba(34, 192, 195, 0.616) 0%, rgba(253, 187, 45, 0.288) 100%);
+    @include overlay;
+    opacity: 1;
+    @include transition;
+}
+
+.overlay-1:hover::after {
+    opacity: 0;
+}
+
+.overlay-1:hover img {
+    transform:translateX(0);
+}
+
+.overlay-1 div:nth-of-type(1) {
+    position: absolute;
+    bottom: 10%;
+    left: 20%;
+    color: white;
+    z-index: 5;
+    transition: .5s all ease-in-out;
+}
+
+.overlay-1:hover div:nth-of-type(1) {
+    bottom: 15%;
+}
+
+.overlay-1 div:nth-of-type(2) {
+    position: absolute;
+    bottom: 3%;
+    left: 20%;
+    color: white;
+    z-index: 5;
+    opacity: 0;
+    transition: .5s all ease-in-out;
+}
+
+.overlay-1:hover div:nth-of-type(2) {
+    bottom: 10%;
+    opacity: 1;
+}
+
+// HOVER BIGGER IMG & ROTATE TITLE
+
+.batman {
+    background-image: url(/img/batman.jpg);
+}
+
+.ww {
+    background-image: url(/img/ww.jpg);
+}
+
+.deadpool {
+    background-image: url(/img/deadpool.jpg);
+}
+
+.joker {
+    background-image: url(/img/joker.jpg);
+}
+
+.bigger-img{
+    display: flex;
+    height: calc(100% - 34.5px - 24.9px - 24.9px);
+}
+
+.bigger-img > *{
+    width: 25%;
+    background-size: cover;
+    background-position: center;
+    transition: .5s all ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+.bigger-img h3{
+    @include transition;
+}
+
+.bigger-img{
+    a:hover {
+    width: 45%;
+    }
+    a:hover h3 {
+    font-size: 50px;
+    transform:rotate(-90deg);
+    }
+}
+
+// MIXIN FLEX
+
+.mixin-flex div {
+    height: 300px;
+    img{
+        width: 200px;
+        height: 100px;
+    }
+}
+
+.flex-center{
+    @include flex-center;
+}
+
+.flex-middle{
+    @include flex-middle;
+}
+
+.flex-center-middle {
+    @include flex-center-middle;
+}
+
+// RESPONSIVE
+
+@media screen and (max-width: 800px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+    }
+}
