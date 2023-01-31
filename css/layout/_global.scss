@@ -27,7 +27,7 @@ article{
     @include all-window;
     overflow-x: hidden;
     position: relative;
-    &::before{
+    &::after{
         @include overlay;
         background: radial-gradient(circle, rgba(63, 94, 251, 0.411) 0%, rgba(252, 70, 106, 0.527) 100%);
         height: 100vh;
@@ -346,11 +346,11 @@ article{
 // HOVER BIGGER IMG & ROTATE TITLE
 
 .batman {
-    background-image: url(img/batman.jpg);
+    background-image: url(../img/batman.jpg);
 }
 
 .ww {
-    background-image: url(/img/ww.jpg);
+    background-image: url(../img/ww.jpg);
 }
 
 .deadpool {
@@ -358,7 +358,7 @@ article{
 }
 
 .joker {
-    background-image: url(/../img/joker.jpg);
+    background-image: url(../img/joker.jpg);
 }
 
 .bigger-img{
@@ -421,4 +421,112 @@ article{
         grid-template-columns: 1fr;
         max-width: 350px;
     }
+}
+
+// GRID ORDER
+
+.container, footer {
+    color: #fff
+}
+  
+.info, .content, .aside, footer {
+    padding: .4em;
+}
+  
+.container {
+    background: rgb(156, 161, 74);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1rem;
+    align-items: start;
+}
+  
+.info {
+    background: #6B9A49;
+}
+  
+.content {
+    background: #645373;
+    order: -1;
+}
+  
+.aside {
+    background: #E69B00;
+}
+  
+footer {
+    background: hotpink;
+}
+
+//   GRID TEMPLATE AREA NAMES
+
+.grid-container{
+    display: grid;
+    gap:1rem;
+    grid-template-areas: 
+    "big  big   big   none  none  none"
+    "big  big   big   large large large"
+    "last last  last  last  last  last";
+}
+  
+.grid-template-area {
+    padding: 1rem;
+    color: #fff;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-width: 10px;
+}
+  
+.grid-template-area:nth-of-type(1) {
+    background: orange;
+    grid-area: big;
+}
+.grid-template-area:nth-of-type(2) {
+    background: hotpink;
+}
+.grid-template-area:nth-of-type(3) {
+    background: olivedrab;
+}
+.grid-template-area:nth-of-type(4) {
+    background: dodgerblue;
+}
+.grid-template-area:nth-of-type(5) {
+    background: slategray;
+    grid-area: large;
+}
+.grid-template-area:nth-of-type(6) {
+    background: tan;
+    grid-area: last;
+}
+  
+.read-more {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(0,0,0,0.2);
+}
+
+// GRID
+
+.containerr{
+    div {
+        background-color: tan;
+        counter-increment: number;
+        &::before {
+            content: counter(number);
+        }
+    }
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+  
+.containerr div:nth-of-type(1){
+    grid-column: 1 / -1;
+    grid-row: 1;
+}
+  
+.containerr div:nth-of-type(2){
+    grid-column: 3 / 4;
+    grid-row: 1 / span 2;
+    background: peru; 
 }
